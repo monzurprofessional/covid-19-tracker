@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid tracker by monzur</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div>
+
+ <h1 class="text-center" class="title" >World wide covid-19 tracker</h1> 
+ <span class="brag">By Monzur Alam</span>
+<div class="src-div" id="src-box">
+   
+    <input id="country" placeholder="search by countries" type="text">
+        <button id="search" class="btn btn-success" >search</button>
+</div>
+ </div>
+ <h1 id="heading">country</h1>
+ <img src="down-arrow.png" class="d-flex justify-content-center" alt="">
+<div id="results" class="container">
+ <div class="row">
+    <div class=" col-md-4 box"><h1>Total cases</h1>
+        <img src="down-arrow.png" class="d-flex justify-content-center" alt="">
+        <span class="value case" id="totalCase">0</span>
+    </div>
+    <div class=" col-md-4  box"><h1>Total death </h1>
+        <img src="down-arrow.png" class="d-flex justify-content-center" alt="">
+        <span class="value death"id="totalDeath">0</span> 
+    </div>
+    <div class="col-md-4  box"><h1>Total recovered </h1>
+        <img src="down-arrow.png" class="d-flex justify-content-center" alt="">
+        <span class="value recovered" id="totalRecovered" >0</span>
+    </div>    
+    <!-- <div class="row"> -->
+        <div class="col-md-4  box"><h1>Today Cases</h1>
+            <img src="down-arrow.png" class="d-flex justify-content-center" alt="">
+            <span class="value case" id="todayCases">0</span>
+        </div>
+        <div class="col-md-4  box"><h1>Today death </h1>
+            <img src="down-arrow.png" class="d-flex justify-content-center" alt="">
+            <span class="value death" id="todayDeath">0</span> 
+        </div>
+        <div class="col-md-4  box"><h1>Today recovered </h1>
+            <img src="down-arrow.png" class="d-flex justify-content-center" alt="">
+            <span class="value recovered" id="todayRecovered" >0</span>
+        </div>    
+     <!-- </div>    -->
+    
+  </div>
+</div>
+ <!-- <div id="results">
+    <div class="row">
+       <div class="col-sm-12 col-md-4 box"><h1>Today Cases</h1>
+           <span class="value case" id="todayCases"></span>
+       </div>
+       <div class="col-sm-12 col-md-4 box"><h1>Today death </h1>
+           <span class="value death" id="todayDeath"></span> 
+       </div>
+       <div class="col-sm-12 col-md-4 box"><h1>Today recovered </h1>
+           <span class="value recovered" id="todayRecovered" ></span>
+       </div>    
+    </div>   
+       
+     
+   </div>  -->
+    <script> 
+       
+        
+        const search = document.getElementById('search').addEventListener('click',function(){
+             const country = document.getElementById('country').value;
+             const heading = document.getElementById('heading');
+             heading.innerText = country
+
+            console.log(country)
+
+        fetch(`https://corona.lmao.ninja/v2/countries/${country}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            document.getElementById('totalCase').innerText = data.cases;
+            document.getElementById('totalDeath').innerText = data.deaths;
+            document.getElementById('totalRecovered').innerText = data.recovered;
+            document.getElementById('todayCases').innerText = data.todayCases;
+            document.getElementById('todayDeath').innerText = data.todayDeaths;
+            document.getElementById('todayRecovered').innerText = data.todayRecovered;
+
+        })
+
+        })
+       
+        
+
+
+       
+         
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
